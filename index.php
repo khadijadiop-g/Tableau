@@ -19,3 +19,39 @@ if(count($categorie['produits'])==0){
 }
 
 }
+
+
+do {
+$isNomExist = false;
+$nomCategorie =readline("Entrer un nom: ");
+if(empty($nomCategorie)){
+    echo "Le champ ne doit pas etre vide \n";
+    $isNomExist  = true;
+}
+foreach ($categories as $key => $categorie) {
+    if($categorie['nom'] === $nomCategorie){
+        echo "Ce nom de categorie existe deja \n";
+       $isNomExist = true;
+    }
+     
+}
+} while ($isNomExist);
+
+do {
+$isCodeExist = false;
+$codeCategorie =readline("Entrer un code: ");
+if(empty($codeCategorie)){
+    echo "Le champ ne doit pas etre vide \n";
+    $isCodeExist  =true;
+}
+foreach ($categories as $key => $categorie) {
+    if($categorie['code'] === $codeCategorie){
+        echo "Ce code de categorie existe deja \n";
+       $isCodeExist = true;
+    }
+     
+}
+} while ($isCodeExist);
+$categorie=['nom'=>$nomCategorie,'code'=>$codeCategorie,'produits'=>[]];
+array_push($categories,$categorie);
+// print_r($categories);
