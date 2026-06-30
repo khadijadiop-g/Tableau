@@ -1,6 +1,5 @@
 <?php
-$categories=[];
-$categories[]=[
+$categories = [
 
         0 => ['nom'=>'Alimentaire','code'=>'1234','produits'=>[
 
@@ -12,3 +11,11 @@ $categories[]=[
         1 => ['nom'=>'Hygyene','code'=>'2864','produits'=>[]]
 
 ];
+// print_r($categories);
+
+foreach($categories as $categorie){
+if(count($categorie['produits'])==0){
+    echo $categorie['nom']."\n";
+}
+
+}
