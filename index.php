@@ -54,4 +54,84 @@ foreach ($categories as $key => $categorie) {
 } while ($isCodeExist);
 $categorie=['nom'=>$nomCategorie,'code'=>$codeCategorie,'produits'=>[]];
 array_push($categories,$categorie);
-// print_r($categories);
+
+print_r($categories);
+
+ $categorieExiste =  false;
+          $code = readline("saisir le code :");
+             foreach ($categories as $index => $categorie ) {
+               if (($categorie['code']) === $code) {
+                    $categorieExiste = true;
+                    break;
+         }
+       } 
+
+if ($categorieExiste) {
+
+do {
+    $isNomExist = false;
+    $nomProduit =readline("Entrer un nom: ");
+    if(empty($nomProduit)){
+        echo "Le champ ne doit pas etre vide \n";
+        $isNomExist  = true;
+    }
+    foreach ($categories as $key => $categorie) {
+           foreach ($categorie['produits'] as $produit) {
+    if ($produit['nom'] === $nomProduit) {
+        echo "Ce nom de produit existe deja \n";
+        $isNomExist = true;
+        break;
+    }
+}
+        
+    }
+} while ($isNomExist);
+
+do {
+    $isRefExist = false;
+    $reference =readline("Entrer un reference: ");
+    if(empty($reference)){
+        echo "Le champ ne doit pas etre vide \n";
+        $isRefExist  = true;
+    }
+    foreach ($categories as $key => $categorie) {
+           foreach ($categorie['produits'] as $produit) {
+    if ($produit['reference'] === $reference) {
+        echo "Cette référence de produit existe deja \n";
+        $isRefExist = true;
+        break;
+    }
+    }
+        
+    }
+} while ($isRefExist);
+
+do{
+    $prix = (int)readline("Entrer le prix: ");
+    if($prix < 0){
+        echo "Le prix doit etre positive \n";
+    }
+
+}while($prix < 0);
+
+do{
+    $quantite = (int)readline("Entrer le quantite: ");
+    if($quantite < 0){
+        echo "La quantite doit etre positive \n";
+    }
+
+}while($quantite < 0);
+
+        $produit =   [
+                    'nom' => $nomProduit,
+                    'reference' => $reference,
+                    'prix' => $prix,
+                    'quantite' => $quantite
+                  ] ;
+          $categories[$index]["produits"][] = $produit;
+       }else {
+          echo " désolé , la categorie n'existe pas \n";
+       }
+
+
+       print_r($categories);
